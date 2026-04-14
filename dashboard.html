@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - الطالب</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <h1>بوابة التعلم الذكية</h1>
+            <div class="user-info">
+                <span id="user-name">جاري التحميل...</span>
+                <span id="user-wallet" class="wallet-badge">0 ج.م</span>
+                <button onclick="logout()" class="btn-logout">خروج</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav>
+                <a href="#" class="nav-item active" onclick="showSection('lessons')">📚 الدروس</a>
+                <a href="#" class="nav-item" onclick="showSection('progress')">📊 تقدمي</a>
+                <a href="#" class="nav-item" onclick="showSection('payments')">💳 المدفوعات</a>
+                <a href="#" class="nav-item" onclick="showSection('settings')">⚙️ الإعدادات</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Lessons Section -->
+            <section id="lessons-section" class="content-section">
+                <h2>الدروس المتاحة</h2>
+                <div id="lessons-grid" class="lessons-grid">
+                    <!-- Lessons will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Progress Section -->
+            <section id="progress-section" class="content-section hidden">
+                <h2>تقدمي الدراسي</h2>
+                <div class="progress-stats">
+                    <div class="stat-card">
+                        <h3>المستوى العام</h3>
+                        <p id="student-level" class="level-badge">جاري التحليل...</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>نسبة الإكمال</h3>
+                        <p id="completion-rate">0%</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>وقت المشاهدة</h3>
+                        <p id="watch-time">0 ساعة</p>
+                    </div>
+                </div>
+                <div id="progress-chart" class="progress-chart">
+                    <!-- AI Analysis Chart -->
+                </div>
+            </section>
+
+            <!-- Payments Section -->
+            <section id="payments-section" class="content-section hidden">
+                <h2>المدفوعات</h2>
+                <form id="payment-form" class="payment-form">
+                    <input type="tel" id="payment-phone" placeholder="رقم الموبايل للدفع" required>
+                    <input type="number" id="payment-amount" placeholder="المبلغ" required>
+                    <label class="file-upload">
+                        <input type="file" id="payment-screenshot" accept="image/*" required>
+                        <span>📷 رفع لقطة الشاشة</span>
+                    </label>
+                    <button type="submit" class="btn-primary">إرسال للمراجعة</button>
+                </form>
+                <div id="payment-history" class="payment-history">
+                    <h3>سجل المدفوعات</h3>
+                    <!-- Payment history items -->
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings-section" class="content-section hidden">
+                <h2>الإعدادات</h2>
+                <form id="password-form" class="settings-form">
+                    <h3>تغيير كلمة المرور</h3>
+                    <input type="password" id="new-password" placeholder="كلمة المرور الجديدة" required>
+                    <input type="password" id="confirm-password" placeholder="تأكيد كلمة المرور" required>
+                    <button type="submit" class="btn-primary">تحديث</button>
+                </form>
+                
+                <div class="devices-section">
+                    <h3>الأجهزة المسجلة</h3>
+                    <div id="devices-list" class="devices-list">
+                        <!-- Devices will be listed here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Video Player Modal -->
+    <div id="video-modal" class="modal hidden">
+        <div class="modal-content video-container">
+            <button class="close-modal" onclick="closeVideo()">&times;</button>
+            <div id="video-player" class="video-player">
+                <!-- Video will be embedded here -->
+            </div>
+            <div class="watermark" id="video-watermark"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
