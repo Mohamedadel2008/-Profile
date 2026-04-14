@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام التعليم المتقدم - تسجيل الدخول</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+</head>
+<body class="login-page">
+
+    <div class="container">
+        <div class="auth-box">
+            <h1>بوابة التعلم الذكية</h1>
+            
+            <!-- Tabs for Login Type -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('online')">أونلاين</button>
+                <button class="tab-btn" onclick="switchTab('center')">سنتر</button>
+            </div>
+
+            <!-- Online Login Form -->
+            <form id="online-form" class="auth-form">
+                <input type="email" id="online-email" placeholder="البريد الإلكتروني" required>
+                <input type="password" id="online-pass" placeholder="كلمة المرور" required>
+                <button type="submit" class="btn-primary">دخول أونلاين</button>
+            </form>
+
+            <!-- Center Login Form -->
+            <form id="center-form" class="auth-form hidden">
+                <input type="text" id="center-name" placeholder="الاسم الثلاثي" required>
+                <input type="text" id="center-code" placeholder="الكود السري" required>
+                <input type="tel" id="center-phone" placeholder="رقم الموبايل" required>
+                <button type="submit" class="btn-primary">دخول السنتر</button>
+            </form>
+
+            <p id="login-error" class="error-msg"></p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Initialize Login Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            initAuth();
+        });
+    </script>
+</body>
+</html>
